@@ -7,10 +7,8 @@ $(document).ready(function() {
             console.log(searchTerm);
             veatherSearch(searchTerm);
             forecast(searchTerm);
-
         })
         // need local storage for search history 
-
     $(".history").on("click", "li", function() {
         veatherSearch($(this).text());
     });
@@ -19,11 +17,9 @@ $(document).ready(function() {
         var li = $("<li>").addClass("list-group-item ").text(text);
         $(".history").append(li);
     }
-
     // first ajax call for todays weather 
     function veatherSearch(searchTerm) {
         var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + searchTerm + "&appid=1cf95ad11d72a2e012ce0c21a97cfeab&units=imperial"
-
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -59,7 +55,6 @@ $(document).ready(function() {
             for (var i = 0; i < response.list.length; i++) {
                 console.log(response)
                 if (response.list[i].dt_txt.indexOf("09:00:00") !== -1) {
-
                     var cardContainer = $("<div class='card col-md-2' style= 'float: left'>");
                     var cardBody = $("<div class='card-body'>");
                     var cardTitle = $("<h5 class='card-title'>").text(new Date(response.list[i].dt_txt).toLocaleDateString());
@@ -94,7 +89,5 @@ $(document).ready(function() {
     }
     for (var i = 0; i < searchHistory.length; i++) {
         addRow(searchHistory[i]);
-
     }
-
 })
